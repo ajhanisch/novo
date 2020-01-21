@@ -25,18 +25,18 @@ class Config:
         epilog="Developed by {} ({}). Find project repository at {}. Find project wiki at {}.".format(MODULE_AUTHOR, MODULE_AUTHOR_EMAIL, MODULE_REPOSITORY, MODULE_WIKI)
     )
     parser.add_argument(
-        '--environment',
+        '--id',
         nargs='+',
-        metavar='1234',
+        metavar='0000-4094',
         required=True,
-        help='environment or list of environments to provision'
-
+        help='id or list of environment ids to provision within specified environment'
     )
     parser.add_argument(
-        '--statistics',
-        action='store_true',
-        default=False,
-        help='Print statistics about provisioned environments'
+        '--environment',
+        nargs='+',
+        metavar='kvm',
+        required=True,
+        help='type of environment to provision with. current options are none. future options are kvm, ovirt, opennebula, vmware.'
     )
     parser.add_argument(
         '-v',
@@ -86,27 +86,23 @@ class Config:
             }
         },
         'loggers' : {
-            'default' : {
-                'level' : 'WARNING',
-                'handlers' : ['console', 'file']
-            },
             '__main__' : {
                 'handlers' : ['console', 'file'],
-                'level' : LOGGING_LEVEL,
+                'level' : 'DEBUG',
                 'propogate' : False
             },
             'novo.environment' : {
-                'level' : LOGGING_LEVEL,
+                'level' : 'DEBUG',
                 'handlers' : ['console', 'file'],
                 'propogate' : False
             },
             'novo.network' : {
-                'level' : LOGGING_LEVEL,
+                'level' : 'DEBUG',
                 'handlers' : ['console', 'file'],
                 'propogate' : False
             },
             'novo.host' : {
-                'level' : LOGGING_LEVEL,
+                'level' : 'DEBUG',
                 'handlers' : ['console', 'file'],
                 'propogate' : False
             },
@@ -126,10 +122,11 @@ class Config:
                              '1'
     NETWORK_GATEWAY_WAN =    os.environ.get('NETWORK_GATEWAY_WAN') or \
                              '254'
-    NETWORK_BLACKLIST_VLAN = [
-        '1111',
-        '2222'
-    ]
+    NETWORK_BLACKLIST_VLAN = os.environ.get('NETWORK_BLACKLIST_VLAN') or \
+                             [
+                                 '1111',
+                                 '2222'
+                             ]
 
     """ ENVIRONMENT SETTINGS OPENNEBULA """
     ONE_API_PROTOCOL = os.environ.get('ONE_API_PROTOCOL') or \

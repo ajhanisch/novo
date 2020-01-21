@@ -5,15 +5,25 @@ import logging.config
 from config import Config
 from novo.host import Host
 from novo.network import Network
-from novo.environment import Environment
+from novo.environment import Environment, Kvm
 
 class Novo:
     """ 
     Datastructure to store results.
 
-    _results = [
+    _results = {
+        kvm: [ info, host_1, host_N ]
         ...
-    ]
+        environment_N: ...
+    }
+
+    info = {
+        ...
+    }
+
+    host = {
+        ...
+    }
     """
 
     _results = None
@@ -21,18 +31,19 @@ class Novo:
     _blacklist_hits = []
 
     def __init__(self):
-        self._results = []
+        self._results = {}
 
-        for environment in args.environment:
-            if environment not in self._blacklist:                
-                print(environment)
-            else:
-                self._blacklist_hits.append(environment)
+    def environment(self, environment):
+        if environment == 'kvm':
+            self.environment = Kvm()
 
-    def print_statistics(self):
-        """ Print statistics about provisioned environments """
+        return self.environment
+        
+    def network(self):
+        return Network()
 
-        print("Blacklist's size: {} [ filtered: {} ]".format(len(self._blacklist), len(self._blacklist_hits)))
+    def hosts(self):
+        return Host()
     
 if __name__ == "__main__":
     """ Parse arguments provided """
@@ -45,11 +56,12 @@ if __name__ == "__main__":
     log = logging.getLogger(__name__)
     
     """ Process command line """
-    if args.environment:
-        provisioner = Novo()
-
-    if args.statistics:
-        provisioner.print_statistics()
+    if args.environment and args.id:
+        for env in args.environment:
+            provisioner = Novo()
+            environment = provisioner.environment(environment=env)
+            network = provisioner.network()
+            hosts = provisioner.hosts()
 
     """ Exit successfully """
     exit(0)
