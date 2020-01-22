@@ -10,7 +10,20 @@ class BaseNetwork:
         self.set_gateway()
 
     def __repr__(self):
-        return 'BaseNetwork(vlan={0.vlan}, octet_first={0.octet_first}, octet_second={0.octet_second}, octet_third={0.octet_third}, octet_fourth={0.octet_fourth}, address={0.address}, dns={0.dns}, subnet_mask={0.subnet_mask}, gateway={0.gateway})'.format(self)
+        return (
+        'BaseNetwork('
+                'vlan={0.vlan},'
+                'octet_first={0.octet_first},'
+                'octet_second={0.octet_second},'
+                'octet_third={0.octet_third},'
+                'octet_fourth={0.octet_fourth},'
+                'address={0.address},'
+                'dns={0.dns},'
+                'subnet_mask={0.subnet_mask},'
+                'gateway={0.gateway}'
+            ')'
+            .format(self)
+        )
 
     def set_address(self):
         self.octet_second = int(self.vlan[0:2])
