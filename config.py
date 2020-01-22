@@ -82,7 +82,7 @@ class Config:
                 'class' : 'logging.handlers.RotatingFileHandler',
                 'formatter' : 'default',
                 'filename' : FILE_LOG,
-                'maxBytes' : 1024,
+                'maxBytes' : 10000000,
                 'backupCount' : 5
             }
         },
@@ -98,7 +98,7 @@ class Config:
     """ NETWORK SETTINGS """
     NETWORK_OCTET_FIRST =    os.environ.get('NETWORK_OCTET_FIRST') or \
                              '10'
-    NETWORK_OCTET_LAST =     os.environ.get('NETWORK_OCTET_LAST') or \
+    NETWORK_OCTET_FOURTH =   os.environ.get('NETWORK_OCTET_FOURTH') or \
                              '0'
     NETWORK_DNS =            os.environ.get('NETWORK_DNS') or \
                              '1.1.1.1'
@@ -115,18 +115,27 @@ class Config:
                              ]
 
     """ ENVIRONMENT SETTINGS OPENNEBULA """
-    ONE_API_PROTOCOL = os.environ.get('ONE_API_PROTOCOL') or \
-                       'https'
-    ONE_API_HOSTNAME = os.environ.get('ONE_API_HOSTNAME') or \
-                       '192.168.90.90'
-    ONE_API_PORT =     os.environ.get('ONE_API_PORT') or \
-                       '2633'
-    ONE_API_URI =      os.environ.get('ONE_API_URI') or \
-                       'RPC2'
-    ONE_API_AUTH =     os.environ.get('ONE_API_AUTH') or \
-                       '/var/lib/one/.one/one_auth'
-    ONE_NODES =        os.environ.get('ONE_NODES') or \
-                       [
-                           '192.168.90.10',
-                           '192.168.90.11'
-                       ]
+    ONE_API_PROTOCOL =   os.environ.get('ONE_API_PROTOCOL') or \
+                         'https'
+    ONE_API_HOSTNAME =   os.environ.get('ONE_API_HOSTNAME') or \
+                         '192.168.90.90'
+    ONE_API_PORT =       os.environ.get('ONE_API_PORT') or \
+                         '2633'
+    ONE_API_URI =        os.environ.get('ONE_API_URI') or \
+                         'RPC2'
+    ONE_API_URL =        os.environ.get('ONE_API_URL') or \
+                         '{}://{}:{}/{}'.format(
+                             ONE_API_PROTOCOL,
+                             ONE_API_HOSTNAME,
+                             ONE_API_PORT,
+                             ONE_API_URI
+                         )
+    ONE_API_AUTH =       os.environ.get('ONE_API_AUTH') or \
+                         '/var/lib/one/.one/one_auth'
+    ONE_NODES =          os.environ.get('ONE_NODES') or \
+                         [
+                             '192.168.90.10',
+                             '192.168.90.11'
+                         ]
+    ONE_IFCFG_LOCATION = os.environ.get('ONE_IFCFG_LOCATION') or \
+                         '/etc/sysconfig/network-scripts'
