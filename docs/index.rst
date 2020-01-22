@@ -1,5 +1,5 @@
 .. novo documentation master file, created by
-   sphinx-quickstart on Wed Jan 22 00:15:56 2020.
+   sphinx-quickstart on Wed Jan 22 01:57:12 2020.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
