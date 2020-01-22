@@ -7,22 +7,23 @@ from argparse import ArgumentParser
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
-    """ MODULE VARIABLES """
-    MODULE_NAME =         'novo'
-    MODULE_VERSION =      '0.1'
-    MODULE_AUTHOR =       'Ashton Hanisch'
-    MODULE_AUTHOR_EMAIL = 'ajhanisch@gmail.com'
-    MODULE_REPOSITORY =   'https://www.github.com/ajhanisch/novo'
-    MODULE_WIKI =         'https://www.github.com/ajhanisch/novo/wikis/home'
+    """ PACKAGE VARIABLES """
+    PACKAGE_NAME =         'novo'
+    PACKAGE_VERSION =      '0.1.0'
+    PACKAGE_AUTHOR =       'Ashton Hanisch'
+    PACKAGE_AUTHOR_EMAIL = 'ajhanisch@gmail.com'
+    # PACKAGE_REPOSITORY =   'https://www.github.com/ajhanisch/novo'
+    PACKAGE_REPOSITORY = 'http://pypi.python.org/pypi/Novo/'
+    PACKAGE_WIKI =         'https://www.github.com/ajhanisch/novo/wikis/home'
 
-    """ MODULE FILES """
+    """ PACKAGE FILES """
     FILE_LOG = os.environ.get('FILE_LOG') or \
                os.path.join(basedir, 'novo.log')
 
-    """ MODULE ARGUMENTS """
+    """ PACKAGE ARGUMENTS """
     parser = ArgumentParser(
-        description="{} performs provisioning tasks for various hypervisors. (Compatible with none currently.)".format(MODULE_NAME),
-        epilog="Developed by {} ({}). Find project repository at {}. Find project wiki at {}.".format(MODULE_AUTHOR, MODULE_AUTHOR_EMAIL, MODULE_REPOSITORY, MODULE_WIKI)
+        description="{} provides a command line interface capability to provision virtual machines on various types of hypervisors.".format(PACKAGE_NAME),
+        epilog="Developed by {} ({}). Find project repository at {}. Find project wiki at {}.".format(PACKAGE_AUTHOR, PACKAGE_AUTHOR_EMAIL, PACKAGE_REPOSITORY, PACKAGE_WIKI)
     )
     parser.add_argument(
         '--id',
@@ -48,11 +49,11 @@ class Config:
     parser.add_argument(
         '--version',
         action='version',
-        version=MODULE_VERSION
+        version=PACKAGE_VERSION
     )
     args = parser.parse_args()
 
-    """ MODULE LOGGING """
+    """ PACKAGE LOGGING """
     LOGGING_LEVELS = [
         logging.CRITICAL,
         logging.ERROR,
@@ -91,22 +92,7 @@ class Config:
                 'level' : 'DEBUG',
                 'propogate' : False
             },
-            'novo.environment' : {
-                'level' : 'DEBUG',
-                'handlers' : ['console', 'file'],
-                'propogate' : False
-            },
-            'novo.network' : {
-                'level' : 'DEBUG',
-                'handlers' : ['console', 'file'],
-                'propogate' : False
-            },
-            'novo.host' : {
-                'level' : 'DEBUG',
-                'handlers' : ['console', 'file'],
-                'propogate' : False
-            },
-        }
+        },
     }
 
     """ NETWORK SETTINGS """
