@@ -12,13 +12,13 @@ class Config:
     PACKAGE_VERSION =      '0.1.0'
     PACKAGE_AUTHOR =       'Ashton Hanisch'
     PACKAGE_AUTHOR_EMAIL = 'ajhanisch@gmail.com'
-    # PACKAGE_REPOSITORY =   'https://www.github.com/ajhanisch/novo'
-    PACKAGE_REPOSITORY = 'http://pypi.python.org/pypi/Novo/'
+    PACKAGE_REPOSITORY =   'https://www.github.com/ajhanisch/novo'
+    # PACKAGE_REPOSITORY = 'http://pypi.python.org/pypi/Novo/'
     PACKAGE_WIKI =         'https://www.github.com/ajhanisch/novo/wikis/home'
 
     """ PACKAGE FILES """
     FILE_LOG = os.environ.get('FILE_LOG') or \
-               os.path.join(basedir, 'novo.log')
+               os.path.join(basedir, '{}.log'.format(PACKAGE_NAME))
 
     """ PACKAGE ARGUMENTS """
     parser = ArgumentParser(

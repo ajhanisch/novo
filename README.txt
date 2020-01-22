@@ -2,20 +2,7 @@
 Novo
 ====
 
-Novo provides a command line interface capability to provision virtual machines on various types of hypervisors. Typical usage often looks like this::
-
-    #!/usr/bin/env python
-    
-    import novo.environment
-    import novo.api
-    import novo.network
-    import novo.host
-
-    if 'kvm' in args.environment:
-        environment = novo.environment.Kvm()
-        api = novo.api.Kvm()
-        network = novo.network.Kvm()
-        host = novo.host.Kvm()
+Novo provides a command line interface capability to provision virtual machines on various types of hypervisors.
 
 Hypervisors
 ===========
@@ -31,7 +18,7 @@ Kvm
 ---
 (under development)
 
-OpenNebula
+Opennebula
 ----------
 (under development)
 

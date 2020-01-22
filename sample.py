@@ -1,12 +1,9 @@
-# sample.py
-
 import logging
-import novo.api
-import novo.host
-import novo.network
 import logging.config
-import novo.environment
+from novo import apis
 from config import Config
+from novo import networks
+from novo import environments
 
 def main():
     """ Parse arguments provided """
@@ -20,10 +17,9 @@ def main():
     
     """ Process command line """
     if 'kvm' in args.environment:
-        environment = novo.environment.Kvm()
-        api = novo.api.Kvm()
-        network = novo.network.Kvm()
-        host = novo.host.Kvm()
+        environment = environments.KVMEnvironment()
+        api = apis.KVMApi()
+        network = networks.KVMNetwork()
 
     """ Exit successfully """
     exit(0)
